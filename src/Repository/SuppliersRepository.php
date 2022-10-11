@@ -2,26 +2,26 @@
 
 namespace App\Repository;
 
-use App\Entity\SupplierName;
+use App\Entity\Suppliers;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
- * @extends ServiceEntityRepository<SupplierName>
+ * @extends ServiceEntityRepository<Suppliers>
  *
- * @method SupplierName|null find($id, $lockMode = null, $lockVersion = null)
- * @method SupplierName|null findOneBy(array $criteria, array $orderBy = null)
- * @method SupplierName[]    findAll()
- * @method SupplierName[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ * @method Suppliers|null find($id, $lockMode = null, $lockVersion = null)
+ * @method Suppliers|null findOneBy(array $criteria, array $orderBy = null)
+ * @method Suppliers[]    findAll()
+ * @method Suppliers[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class SupplierNameRepository extends ServiceEntityRepository
+class SuppliersRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
     {
-        parent::__construct($registry, SupplierName::class);
+        parent::__construct($registry, Suppliers::class);
     }
 
-    public function add(SupplierName $entity, bool $flush = false): void
+    public function add(Suppliers $entity, bool $flush = false): void
     {
         $this->getEntityManager()->persist($entity);
 
@@ -30,7 +30,7 @@ class SupplierNameRepository extends ServiceEntityRepository
         }
     }
 
-    public function remove(SupplierName $entity, bool $flush = false): void
+    public function remove(Suppliers $entity, bool $flush = false): void
     {
         $this->getEntityManager()->remove($entity);
 
@@ -40,7 +40,7 @@ class SupplierNameRepository extends ServiceEntityRepository
     }
 
 //    /**
-//     * @return SupplierName[] Returns an array of SupplierName objects
+//     * @return Suppliers[] Returns an array of Suppliers objects
 //     */
 //    public function findByExampleField($value): array
 //    {
@@ -54,7 +54,7 @@ class SupplierNameRepository extends ServiceEntityRepository
 //        ;
 //    }
 
-//    public function findOneBySomeField($value): ?SupplierName
+//    public function findOneBySomeField($value): ?Suppliers
 //    {
 //        return $this->createQueryBuilder('s')
 //            ->andWhere('s.exampleField = :val')
