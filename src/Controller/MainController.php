@@ -2,17 +2,21 @@
 
 namespace App\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use App\Repository\CategoriesRepository;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class MainController extends AbstractController
 {
-    #[Route('/login', name: 'app_main')]
-    public function index(): Response
-    {
-        return $this->render('connexion/index.html.twig', [
-            'controller_name' => 'Boss',
+    #[Route('/', name: 'app_main')]
+    public function index(CategoriesRepository $categoriesRepository): Response
+    {   $category = $categoriesRepository->findall();
+        
+        
+        
+        return $this->render('main/index.html.twig', [
+            'category' => $category,
         ]);
     }
 }

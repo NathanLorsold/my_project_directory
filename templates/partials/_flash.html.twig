@@ -1,0 +1,9 @@
+{% for label, messages in app.flashes (["success","danger","info"]) %}
+    {% for message in messages %}
+        <div class="alert alert-{{ label }} alert-dismissible" role="alert">
+            <div class="alert-message">
+                {{ message }}
+            </div>
+        </div>
+    {% endfor %}
+{% endfor %}
