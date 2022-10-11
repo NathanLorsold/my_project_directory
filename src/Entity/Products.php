@@ -2,11 +2,11 @@
 
 namespace App\Entity;
 
-use App\Repository\ProductRepository;
+use App\Repository\ProductsRepository;
 use Doctrine\ORM\Mapping as ORM;
 
-#[ORM\Entity(repositoryClass: ProductRepository::class)]
-class Product
+#[ORM\Entity(repositoryClass: ProductsRepository::class)]
+class Products
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -16,12 +16,6 @@ class Product
     #[ORM\Column(length: 255)]
     private ?string $ProductName = null;
 
-    #[ORM\Column]
-    private ?int $SupplierId = null;
-
-    #[ORM\Column]
-    private ?int $CategoryId = null;
-
     #[ORM\Column(length: 255)]
     private ?string $QuantityPerUnit = null;
 
@@ -29,19 +23,19 @@ class Product
     private ?string $UnitPrice = null;
 
     #[ORM\Column(length: 255)]
-    private ?string $UnitsInStock = null;
+    private ?string $UnitsOnStock = null;
 
     #[ORM\Column(length: 255)]
     private ?string $UnitsOnOrder = null;
 
     #[ORM\Column(length: 255)]
-    private ?string $RedorderLevel = null;
+    private ?string $ReorderLevel = null;
 
     #[ORM\Column(length: 255)]
     private ?string $Discontinued = null;
 
     #[ORM\ManyToOne(inversedBy: 'products')]
-    private ?Supplier $supplier = null;
+    private ?Suppliers $suppliers = null;
 
     public function getId(): ?int
     {
@@ -56,30 +50,6 @@ class Product
     public function setProductName(string $ProductName): self
     {
         $this->ProductName = $ProductName;
-
-        return $this;
-    }
-
-    public function getSupplierId(): ?int
-    {
-        return $this->SupplierId;
-    }
-
-    public function setSupplierId(int $SupplierId): self
-    {
-        $this->SupplierId = $SupplierId;
-
-        return $this;
-    }
-
-    public function getCategoryId(): ?int
-    {
-        return $this->CategoryId;
-    }
-
-    public function setCategoryId(int $CategoryId): self
-    {
-        $this->CategoryId = $CategoryId;
 
         return $this;
     }
@@ -108,14 +78,14 @@ class Product
         return $this;
     }
 
-    public function getUnitsInStock(): ?string
+    public function getUnitsOnStock(): ?string
     {
-        return $this->UnitsInStock;
+        return $this->UnitsOnStock;
     }
 
-    public function setUnitsInStock(string $UnitsInStock): self
+    public function setUnitsOnStock(string $UnitsOnStock): self
     {
-        $this->UnitsInStock = $UnitsInStock;
+        $this->UnitsOnStock = $UnitsOnStock;
 
         return $this;
     }
@@ -132,14 +102,14 @@ class Product
         return $this;
     }
 
-    public function getRedorderLevel(): ?string
+    public function getReorderLevel(): ?string
     {
-        return $this->RedorderLevel;
+        return $this->ReorderLevel;
     }
 
-    public function setRedorderLevel(string $RedorderLevel): self
+    public function setReorderLevel(string $ReorderLevel): self
     {
-        $this->RedorderLevel = $RedorderLevel;
+        $this->ReorderLevel = $ReorderLevel;
 
         return $this;
     }
@@ -156,14 +126,14 @@ class Product
         return $this;
     }
 
-    public function getSupplier(): ?Supplier
+    public function getSuppliers(): ?Suppliers
     {
-        return $this->supplier;
+        return $this->suppliers;
     }
 
-    public function setSupplier(?Supplier $supplier): self
+    public function setSuppliers(?Suppliers $suppliers): self
     {
-        $this->supplier = $supplier;
+        $this->suppliers = $suppliers;
 
         return $this;
     }

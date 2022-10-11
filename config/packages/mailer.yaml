@@ -1,3 +1,16 @@
+# framework:
+#     mailer:
+#         dsn: '%env(MAILER_DSN)%'
+
 framework:
     mailer:
+    #Cette ligne nous permet de palier à l'erreur de "ssl/:null:/465" et donc de rentrer de le port de sécurité 465 et d'executer l'action d'envoi de mail.
         dsn: '%env(MAILER_DSN)%'
+        # envelope:
+        #     sender: 'nathan.lorsold@gmail.com'
+        #     recipients: ['nathan.lorsold@gmail.com', 'nathan.lorsold@gmail.com']
+        # headers:
+        #     From: 'Nathan <nathan.lorsold@gmail.com>'
+        #     Bcc: 'nathan.lorsold@gmail.com'
+        #     X-Custom-Header: 'cacahuete'
+

@@ -1,0 +1,120 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Products index{% endblock %}
+
+{% block body %}
+
+{% for message in app.flashes('success') %}
+    <div class="flash-success">
+        {{ message }}
+    </div>
+{% endfor %}
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">Navbar</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarColor01">
+      <ul class="navbar-nav me-auto">
+        <li class="nav-item">
+          <a class="nav-link active" href="#">Home
+            <span class="visually-hidden">(current)</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Features</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Pricing</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">About</a>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Dropdown</a>
+          <div class="dropdown-menu">
+            <a class="dropdown-item" href="#">Action</a>
+            <a class="dropdown-item" href="#">Another action</a>
+            <a class="dropdown-item" href="#">Something else here</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="#">Separated link</a>
+          </div>
+        </li>
+      </ul>
+      <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+      {%if app.user %}
+              <li class="nav-item">
+              {{app.user.email}}
+          <a class="nav-link" href="#">Mon compte</a>
+        </li>
+      
+              <li class="nav-item">
+          <a class="nav-link" href="{{ path("app_logout") }}">Me déconnecter</a>
+        </li>
+      {% else %}
+                <li class="nav-item">
+            <a class="nav-link" href="{{ path("app_register") }}">M'inscrire</a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="{{ path("app_login") }}">Me connecter</a>
+          </li>
+      {% endif %}
+      </ul>
+
+    </div>
+  </div>
+</nav>           
+{% for label, messages in app.flashes (["success","danger","info"]) %}
+    {% for message in messages %}
+        <div class="alert alert-{{ label }} alert-dismissible" role="alert">
+            <div class="alert-message">
+                {{ message }}
+            </div>
+        </div>
+    {% endfor %}
+{% endfor %}
+
+<h1>Products index</h1>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>ProductName</th>
+                        <th>QuantityPerUnit</th>
+                        <th>UnitPrice</th>
+                        <th>UnitsOnStock</th>
+                        <th>UnitsOnOrder</th>
+                        <th>ReorderLevel</th>
+                        <th>Discontinued</th>
+                        <th>actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                {% for product in products %}
+                    <tr>
+                        <td>{{ product.id }}</td>
+                        <td>{{ product.ProductName }}</td>
+                        <td>{{ product.QuantityPerUnit }}</td>
+                        <td>{{ product.UnitPrice }}</td>
+                        <td>{{ product.UnitsOnStock }}</td>
+                        <td>{{ product.UnitsOnOrder }}</td>
+                        <td>{{ product.ReorderLevel }}</td>
+                        <td>{{ product.Discontinued }}</td>
+                        <td>
+                            <a href="{{ path('app_products_show', {'id': product.id}) }}">show</a>
+                            <a href="{{ path('app_products_edit', {'id': product.id}) }}">edit</a>
+                        </td>
+                    </tr>
+                {% else %}
+                    <tr>
+                        <td colspan="9">no records found</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+                
+            </table>
+
+            <a href="{{ path('app_products_new') }}" class="btn btn-primary">Ajout d'un nouveau produit</a>
+{% endblock %}
