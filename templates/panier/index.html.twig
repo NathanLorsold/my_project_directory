@@ -1,0 +1,78 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello PanierController!{% endblock %}
+
+{% block body %}
+
+{# <div class="example-wrapper">
+    <h1>Votre panier ✅</h1>
+
+    This friendly message is coming from:
+    <ul>
+        <li>Your controller at <code><a href="{{ '/home/nathan/Bureau/my_project_directory/src/Controller/PanierController.php'|file_link(0) }}">src/Controller/PanierController.php</a></code></li>
+        <li>Your template at <code><a href="{{ '/home/nathan/Bureau/my_project_directory/templates/panier/index.html.twig'|file_link(0) }}">templates/panier/index.html.twig</a></code></li>
+    </ul>
+</div> #}
+<section class="container">
+
+<h1> Mon Panier </h1>
+{% if panierplein | length > 0 %}
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Produit</th>
+                <th>Quantité</th>
+                <th> </th>
+                <th>Prix</th>
+                <th>Actions</th>
+                <th>Total</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for element in panierplein %}
+                <tr>
+                    <td>{{ element.product.ProductName }}</td>
+                    <td>{{ element.quantite }}</td>  
+                    <td>
+                        <a href="{{path("app_ajout", {id: element.product.id})}}" class="btn btn-success btn-sm">
+                        +
+                        </a>
+                        <a href="{{path("app_remove", {id: element.product.id})}}" class="btn btn-warning btn-sm">
+                        -
+                        </a>
+                        <a href="{{path("app_delete", {id: element.product.id})}}" class="btn btn-danger btn-sm">
+                            <i class="bi bi-trash"></i>Delete                    
+                        </a>
+                    </td>            
+                    <td> {{ element.product.UnitPrice }} </td>
+
+                    {# <td>{{ element.total }}</td> #}
+                    <td>
+                    </td>
+                    
+                    <td> {{ element.product.UnitPrice * element.quantite }} </td>
+
+                </tr>
+            {% endfor %}
+        </tbody>
+            <tfoot>
+                <tr>
+                    <td colspan="5">Total : </td>
+                    <td>{{ total }}</td>
+                    <td>
+                        <a href="{{path("app_delete_all")}}" class="btn btn-danger">
+                        Supprimer le panier
+                        </a>
+                    </td>
+                </tr>
+                <tr>
+                    <td> <a href="{{path("app_login")}}" class="btn btn-primary"> Valider le panier</a> </td>
+                </tr>
+            </tfoot>
+        </table>
+    {% else %}
+        <p> Surprise, c'est vide !</p>
+    {% endif %}
+</section>
+
+{% endblock %}

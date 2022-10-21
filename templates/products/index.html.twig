@@ -46,8 +46,12 @@
       {%if app.user %}
               <li class="nav-item">
               {{app.user.email}}
-          <a class="nav-link" href="#">Mon compte</a>
-        </li>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">Mon compte</a>
+              </li>
+
+
       
               <li class="nav-item">
           <a class="nav-link" href="{{ path("app_logout") }}">Me déconnecter</a>
@@ -60,7 +64,11 @@
           <li class="nav-item">
             <a class="nav-link" href="{{ path("app_login") }}">Me connecter</a>
           </li>
-      {% endif %}
+      {% endif %}            
+      <li class="nav-item">
+        <a class="nav-link" href="{{ path("app_panier") }}">Mon Panier</a>
+      </li>
+
       </ul>
 
     </div>
@@ -105,6 +113,10 @@
                         <td>
                             <a href="{{ path('app_products_show', {'id': product.id}) }}">show</a>
                             <a href="{{ path('app_products_edit', {'id': product.id}) }}">edit</a>
+                            <a href="{{ path('app_ajout', {'id': product.id}) }}">
+                            Ajouter au panier
+                            </a>
+
                         </td>
                     </tr>
                 {% else %}

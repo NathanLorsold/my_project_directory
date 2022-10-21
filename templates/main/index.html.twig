@@ -65,19 +65,21 @@
 		<a href="{{ path('app_products_index') }}" class="btn btn-primary btn-lg">Accueil</a>
 		<a href="{{ path('app_register') }}" class="btn btn-secondary btn-lg">M'inscrire</a>
 		<a href="{{ path('app_login') }}" class="btn btn-success btn-lg">Me connecter</a>
+
 	</div>
 	<section class="container">
 		<div class="row">
 			{% for item in category %}
+    {% if item.parent == null %}
 				<div class="col">
 					<div class="card border-dark mb-3" style="max-width: 20rem;">
 						<div class="card-header">{{item.name}}</div>
 						<div class="card-body">
-
-							<h4 class="card-title">Dark card title</h4>
-							<p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+									<img src="{{ asset("assets/images/FMIC+0144503540.jpeg") }}" alt="Girl in a jacket" style="width:100px">
+							<a href="{{ path('app_products_index') }}" class="btn btn-success btn-lg">Voir la liste des produits</a>
 						</div>
 					</div>
+    {% endif %}
 				{% endfor %}
 			</div>
 		</section>

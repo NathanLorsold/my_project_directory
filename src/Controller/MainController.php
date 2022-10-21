@@ -9,7 +9,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class MainController extends AbstractController
 {
-    #[Route('/', name: 'app_main')]
+    #[Route('/', name: 'app_accueil')]
     public function index(CategoriesRepository $categoriesRepository): Response
     {   $category = $categoriesRepository->findall();
         
